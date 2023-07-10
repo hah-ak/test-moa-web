@@ -8,16 +8,13 @@ export const RoomMessageBrokerProvider = (props:{children : ReactElement}) => {
     const {current:brokerClient} = useRef(new Client({
         brokerURL : 'ws://localhost:9103/hello',
         // connectHeaders: {myApplication: 'true'},
-        onConnect : (frame) => {
-            brokerClient.subscribe('/topic/greetings',(message) => {console.log(message.body)})
-        },
         onWebSocketError : (evt) => console.log(evt),
         onStompError : frame => console.log(frame),
     }))
 
     useEffect(() => {
         brokerClient.activate()
-        return () => {console.log('finish');brokerClient.deactivate().catch()}
+        return () => {brokerClient.deactivate().catch()}
     },[])
 
     return(

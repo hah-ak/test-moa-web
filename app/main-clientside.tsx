@@ -1,38 +1,66 @@
 "use client";
-import React, {useEffect, useState} from 'react';
-import {
-    RoomMessageBrokerProvider,
-    useRoomMessageBrokerContext
-} from "@/contexts/socket/room/useRoomBrokerContext";
+import React, {useEffect, useRef, useState} from 'react';
+import {RoomMessageBrokerProvider} from "@/contexts/socket/hello/usehelloPublishContext";
 import {IMessage} from "@stomp/stompjs";
-import useTopicHelloBroker from "@/contexts/socket/room/useTopicHelloBroker";
+import useTopicGreetingSubscribe from "@/contexts/socket/hello/useTopicGreetingSubscribe";
+import {useRoomWebSocket} from "@/contexts/socket/room/useRoomWebSocket";
+import {File} from "buffer";
+import {text} from "stream/consumers";
 
 const Children = () => {
 
-    const [brokerNewData, sendMessage] = useTopicHelloBroker();
+    const [brokerNewData, sendMessage] = useTopicGreetingSubscribe();
+    const [newData, sendData] = useRoomWebSocket()
+
     const [brokerDataList, setBrokerDataList] = useState<IMessage[]>([])
-    const [webSocket, setWebSocket] = useState(()=>new WebSocket("ws://localhost:9103/room"))
-    const [socketData, setSocketData] = useState<string[]>([])
-    webSocket.addEventListener('message',(e)=>{
-        setSocketData([...socketData,e.data])
-    })
+    const [socketData, setSocketData] = useState<(string | React.JSX.Element)[]>([])
 
-    useEffect(()=>{
-        return ()=>{webSocket.close()}
-    },[])
-
-    useEffect(()=>{
+    const fileRef = useRef<HTMLInputElement>(null)
+    const textRef = useRef<HTMLInputElement>(null)
+    useEffect(() => {
         if (brokerNewData) setBrokerDataList([...brokerDataList, brokerNewData])
-    },[brokerNewData])
+    }, [brokerNewData])
+
+    useEffect(() => {
+        if (typeof newData === 'string') {
+            setSocketData([...socketData, newData])
+        }
+        else if (newData instanceof Blob) {
+            const reader = new FileReader()
+            reader.readAsDataURL(new Blob([newData]))
+            reader.onloadend = (ev) => { typeof reader.result === 'string' ? setSocketData([...socketData, <img src={reader.result}/>]) : ''}
+        } else  {
+
+        }
+    }, [newData])
+
+    const sendSocketData = () => {
+
+        if (fileRef.current?.files?.length) {
+            const files = fileRef.current.files[Symbol.iterator]();
+            while (true) {
+                const {value, done} = files.next();
+                sendData(new Blob([value]))
+                if (!done) break;
+            }
+            fileRef.current.value = ""
+        }
+
+        if (textRef.current?.value) {
+            sendData(textRef.current.value)
+            textRef.current.value = ""
+        }
 
 
-    const sendData = () => {
-        webSocket.send("evachachi")
     }
+
     return (
+
         <div>
-            <div onClick={sendData}>send data</div>
-            {socketData.map(value => (<div>{value}</div>))}
+            <div onClick={sendSocketData}>send data</div>
+            <input type={"file"} multiple={true} ref={fileRef}/>
+            <input type={"text"} ref={textRef}/>
+            {socketData.map((value, index) => (<div key={index}>{}</div>))}
             <br/>
             <div onClick={sendMessage}>send broker message</div>
             {brokerDataList.map((value, index) => (<div key={value.body + index}>{value.body}</div>))}
