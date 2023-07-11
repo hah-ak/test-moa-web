@@ -1,11 +1,15 @@
-import React from 'react';
+import RoomEnterClientside from "@/app/@room/room-enter-clientside";
 
 const Page = () => {
+
     return (
-        <div>
-            room slot
-        </div>
+        <>
+            <div> go chatting room</div>
+            <RoomEnterClientside/>
+        </>
     );
 };
+
+import React from 'react';
 
 export default Page;

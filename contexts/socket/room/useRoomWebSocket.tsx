@@ -9,7 +9,8 @@ export const useRoomWebSocket = ():[SocketReturn,(data:SocketReturn)=>void] => {
     },[])
 
     webSocket.current.addEventListener('message',(e)=>{
-        if (typeof e.data === 'string') {
+        console.log(e.data instanceof Blob)
+        if (typeof e.data === 'string' || e.data instanceof Blob) {
             setNewSocketData(e.data)
         }
     })

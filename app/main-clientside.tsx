@@ -1,15 +1,15 @@
 "use client";
 import React, {useEffect, useRef, useState} from 'react';
-import {RoomMessageBrokerProvider} from "@/contexts/socket/hello/usehelloPublishContext";
+import {RoomMessageBrokerProvider} from "@/contexts/socket/hello/usehelloContext";
 import {IMessage} from "@stomp/stompjs";
-import useTopicGreetingSubscribe from "@/contexts/socket/hello/useTopicGreetingSubscribe";
+import useTopicGreetingPubSub from "@/contexts/socket/hello/useTopicGreetingPubSub";
 import {useRoomWebSocket} from "@/contexts/socket/room/useRoomWebSocket";
 import {File} from "buffer";
 import {text} from "stream/consumers";
 
 const Children = () => {
 
-    const [brokerNewData, sendMessage] = useTopicGreetingSubscribe();
+    const [brokerNewData, sendMessage] = useTopicGreetingPubSub();
     const [newData, sendData] = useRoomWebSocket()
 
     const [brokerDataList, setBrokerDataList] = useState<IMessage[]>([])

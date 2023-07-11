@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useRoomMessageBrokerContext} from "@/contexts/socket/hello/usehelloPublishContext";
+import {useRoomMessageBrokerContext} from "@/contexts/socket/hello/usehelloContext";
 import {Client, IMessage} from "@stomp/stompjs";
 
-const useTopicGreetingSubscribe = ():[IMessage|undefined,()=>void] => {
+const useTopicGreetingPubSub = ():[IMessage|undefined,()=>void] => {
     const {client} = useRoomMessageBrokerContext();
     const [brokerNewData, setBrokerNewData] = useState<IMessage>()
 
@@ -16,4 +16,4 @@ const useTopicGreetingSubscribe = ():[IMessage|undefined,()=>void] => {
     }
     return [brokerNewData, sendMessage];
 };
-export default useTopicGreetingSubscribe;
+export default useTopicGreetingPubSub;

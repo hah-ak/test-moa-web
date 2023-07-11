@@ -8,14 +8,15 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children,member
+  children,member,room
 }: {
   children: React.ReactNode
   member : React.ReactNode
+  room : React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}{member}</body>
+      <body className={inter.className}>{children}{member}{room}</body>
     </html>
   )
 }
