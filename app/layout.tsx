@@ -1,5 +1,5 @@
-import { Inter } from 'next/font/google'
-
+import {Inter} from 'next/font/google'
+import './global.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -8,15 +8,17 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children,member,room
+  children,myRooms
 }: {
   children: React.ReactNode
-  member : React.ReactNode
-  room : React.ReactNode
+  myRooms : React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}{member}{room}</body>
+      <body className={inter.className}>
+      {children}
+      {myRooms}
+      </body>
     </html>
   )
 }

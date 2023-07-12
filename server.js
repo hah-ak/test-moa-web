@@ -1,12 +1,11 @@
 const {createServer} = require('http');
 const {parse} = require('url');
 const next = require('next');
+const nextConfig = require('./next.config')
 
-const dev = process.env.NODE_ENV !== 'production'
-const hostname = dev ? 'localhost' : ''
-const port = 3003
+const {DEV, PORT, HOST_NAME} = nextConfig.serverRuntimeConfig
 
-const app = next({dev, hostname, port});
+const app = next({dev:DEV, hostname:HOST_NAME, port:PORT});
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
@@ -18,7 +17,7 @@ app.prepare().then(() => {
 
         }
     })
-        .listen(port, () => {
+        .listen(PORT, () => {
             console.log("listen")
         })
         .once('error', () => {
