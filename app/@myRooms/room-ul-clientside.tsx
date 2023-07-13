@@ -12,8 +12,8 @@ const RoomUlClientside = () => {
 
     return (
         <>
-            <div className="">
-                <div style={{display: 'inline-block'}} className={'absolute right-0 top-0'}>
+            <div className={'relative'}>
+                <div className="absolute inline-block right-0 top-0">
                     <Bars3Icon onClick={() => setOpen(true)} className='h-[38px] w-[74px]'/>
                 </div>
             </div>

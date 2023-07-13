@@ -20,7 +20,7 @@ const RoomLiClientside = () => {
     }, [newData])
     return (
         <>
-            {test.map(value => <RoomLiClientside/>)}
+            {/*{test.map(value => <Link href={`/${value}`}></Link>)}*/}
         </>
     )
 };
