@@ -1,9 +1,8 @@
-import RoomUlClientside from "@/app/@myRooms/room-ul-clientside";
-
+import RoomUlClientside from "@/app/@myRooms/component/room-ul-clientside";
 const Page = () => {
 
     return (
-            <RoomUlClientside/>
+            <RoomUlClientside initOpenState={false}/>
     );
 };
 

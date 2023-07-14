@@ -9,7 +9,7 @@ const nextConfig = {
     swcMinify : true,
     compiler: {
         removeConsole : {
-            exclude : ['error','warn']
+            exclude : isDev ? ["*"] : ['error','warn']
         }
     },
     modularizeImports : {

@@ -3,20 +3,19 @@ import React, {Fragment, Suspense, useState} from 'react';
 import ChatRoomMessageBrokerProvider from "@/contexts/socket/chat/useChatRoomContext";
 import {Dialog, Transition} from "@headlessui/react";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/20/solid";
-import RoomLiClientside from "@/app/@myRooms/room-li-clientside";
+// import RoomLiClientside from "@/app/@myRooms/room-li-clientside";
 import Loading from "@/app/@myRooms/loading";
+import dynamic from "next/dynamic";
 
-const RoomUlClientside = () => {
+const WithLoading = dynamic(() => import('./room-li-clientside'),{
+    loading : ()=><Loading/>
+})
+const RoomUlClientside = ({initOpenState=false}:{initOpenState:boolean}) => {
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(initOpenState);
 
     return (
         <>
-            <div className={'relative'}>
-                <div className="absolute inline-block right-0 top-0">
-                    <Bars3Icon onClick={() => setOpen(true)} className='h-[38px] w-[74px]'/>
-                </div>
-            </div>
             <ChatRoomMessageBrokerProvider>
                 <Transition.Root show={open} as={Fragment}>
                     <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -66,9 +65,7 @@ const RoomUlClientside = () => {
                                                         <div className="flow-root">
 
                                                             <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                                <Suspense fallback={<Loading/>}>
-                                                                    <RoomLiClientside/>
-                                                                </Suspense>
+                                                                <WithLoading/>
                                                             </ul>
 
                                                         </div>

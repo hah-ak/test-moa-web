@@ -6,22 +6,22 @@ const MainButtons = () => {
     return (
         <div className={'grid grid-cols-6 justify-items-stretch'}>
             <div className={`justify-self-start relative`}>
-                <button className={`h-10 w-24 z-0 btn3d btn-success`}>
+                <SuccessBtn classes={`h-10 w-24`}>
                     <span className={`text-white`}><CheckIcon className={`h-5 inline`}/>success</span>
-                </button>
+                </SuccessBtn>
             </div>
             <div className={`justify-self-start relative`}>
-                <button className={`h-10 w-24 btn3d btn-success`}>button</button>
+                <SuccessBtn classes={`h-10 w-24`}/>
             </div>
             <div className={`justify-self-start relative`}>
-                <SuccessBtn />
+                <SuccessBtn classes={`h-10 w-24`}/>
             </div>
             <div></div>
             <div className={`justify-self-end relative`}>
-                <button className={`h-10 w-24 btn3d btn-success`}>button</button>
+                <SuccessBtn classes={`h-10 w-24`}/>
             </div>
             <div className={`justify-self-end relative`}>
-                <button className={`h-10 w-24 btn3d btn-success`}>button</button>
+                <SuccessBtn classes={`h-10 w-24`}/>
             </div>
         </div>
     );

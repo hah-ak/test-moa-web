@@ -1,14 +1,12 @@
-'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,use} from 'react';
 import {useChatRoomMessageBrokerContext} from "@/contexts/socket/chat/useChatRoomContext";
 import Link from "next/link";
 
 const RoomLiClientside = () => {
+
     const {client, newData, sendData} = useChatRoomMessageBrokerContext();
     const [data, setData] = useState(newData)
-    const [test, setTest] = useState<string[]>(async () => await new Promise((resolve, reject) => {
-            setTimeout(()=>resolve(['9','10','11']),3000)
-        }))
+    const [test, setTest] = useState<string[]>(['9','10','11'])
     useEffect(() => {
         if (data instanceof Uint8Array) {
             const objectURL = URL.createObjectURL(new Blob([data], {type: 'image/png'}));
@@ -20,7 +18,7 @@ const RoomLiClientside = () => {
     }, [newData])
     return (
         <>
-            {/*{test.map(value => <Link href={`/${value}`}></Link>)}*/}
+            {test.map(value => <Link href={`/${value}`} key={value}>{value}</Link>)}
         </>
     )
 };
