@@ -1,4 +1,5 @@
 import MainClientside from "@/app/component/main-clientside";
+import NavBar from "@/app/component/nav-bar";
 export default async function Home() {
 
     const getData = async ():Promise<string[]> => {
@@ -9,6 +10,7 @@ export default async function Home() {
 
     return (
         <>
+            <NavBar/>
             <MainClientside curRooms={listData}/>
         </>
     )

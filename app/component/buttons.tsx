@@ -2,7 +2,7 @@ import React from 'react';
 import {CheckIcon} from "@heroicons/react/20/solid";
 import {SuccessBtn} from "@/component/button/buttonComponents";
 
-const MainButtons = () => {
+const Buttons = () => {
     return (
         <div className={'grid grid-cols-6 justify-items-stretch'}>
             <div className={`justify-self-start relative`}>
@@ -27,4 +27,4 @@ const MainButtons = () => {
     );
 };
 
-export default MainButtons;
+export default Buttons;

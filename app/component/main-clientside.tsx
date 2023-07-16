@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import {CheckIcon} from "@heroicons/react/20/solid";
-import MainButtons from "@/app/component/main-buttons";
+import Buttons from "@/app/component/buttons";
 const MainClientside = ({curRooms}:{curRooms:string[]}) => {
 
 
@@ -28,7 +28,7 @@ const MainClientside = ({curRooms}:{curRooms:string[]}) => {
                 </div>
             </div>
             <div className={`h-28 m-1`}>
-                <MainButtons/>
+                <Buttons/>
             </div>
         </div>
     );

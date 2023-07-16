@@ -15,8 +15,10 @@ export default function RootLayout({children, myRooms}: {
     return (
         <html lang="en">
         <body className={`${inter.className} max-w-screen-lg md:m-auto relative`}>
-        {children}
-        {myRooms}
+        <div className={`bg-gray-200`}>
+            {children}
+            {myRooms}
+        </div>
         </body>
         </html>
     )
