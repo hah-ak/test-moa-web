@@ -2,8 +2,9 @@
 import React from 'react';
 import {CheckIcon} from "@heroicons/react/20/solid";
 import Buttons from "@/app/component/buttons";
-const MainClientside = ({curRooms}:{curRooms:string[]}) => {
+import ServerChat from "@/app/component/server-chat/server-chat";
 
+const MainClientside = ({curRooms}: { curRooms: string[] }) => {
 
 
     return (
@@ -23,7 +24,7 @@ const MainClientside = ({curRooms}:{curRooms:string[]}) => {
                         members
                     </div>
                     <div className={`col-span-5 row-span-3 border-2 border-s-blue-500`}>
-                        c
+                        <ServerChat />
                     </div>
                 </div>
             </div>
