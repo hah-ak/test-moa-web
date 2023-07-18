@@ -14,7 +14,7 @@ export default function RootLayout({children, myRooms}: {
 }) {
     return (
         <html lang="en">
-        <body className={`${inter.className} max-w-screen-lg md:m-auto relative`}>
+        <body className={`${inter.className} lg:max-w-screen-lg md:max-w-screen-md w-full m-auto relative`}>
         <div className={`bg-gray-200`}>
             {children}
             {myRooms}

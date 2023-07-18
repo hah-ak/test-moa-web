@@ -5,27 +5,27 @@ import Buttons from "@/app/component/buttons";
 import Link from "next/link";
 import ChatRooms from "@/app/component/contents/chat-rooms";
 import Members from "@/app/component/contents/members";
-import {ArrowPagination} from "@/component/button/paginationComponents";
-import {PaginationBtn} from "@/component/button/buttonComponents";
+import {ArrowPagination} from "@/component/button/pagination-components";
+import {PaginationBtn} from "@/component/button/button-components";
 import RowNotice from "@/app/component/contents/row-notice";
 import ServerChat from "@/app/component/server-chat/server-chat";
-const MainClientside = ({curRooms}:{curRooms:string[]}) => {
+
 
 
 const MainClientside = ({curRooms}: { curRooms: string[] }) => {
 
     return (
-        <div className={`md:container p-2`}>
+        <div className={`p-2`}>
             <div className={`h-5 m-1`}></div>
-            <div className={`h-72 m-1`}>
-                <div className={`grid grid-cols-6 grid-rows-8`}>
-                    <div className={`col-span-6 row-span-1 border-2`}>
+            <div className={`h-auto m-1`}>
+                <div className={`grid grid-cols-5 grid-rows-9 md:grid-cols-6 md:grid-rows-8`}>
+                    <div className={`col-span-5 row-span-1 border-2 md:col-span-6`}>
                         <RowNotice/>
                     </div>
                     <div className={`col-span-5 row-span-4 border-2`}>
                         <ChatRooms data={curRooms}/>
                     </div>
-                    <div className={`col-span-1 row-span-7 border-2`}>
+                    <div className={`border-2 row-span-1 col-span-5 md:col-span-1 md:row-span-7`}>
                         <Members />
                     </div>
                     <div className={`col-span-5 row-span-3 border-2`}>

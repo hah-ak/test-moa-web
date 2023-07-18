@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Fragment, useState} from 'react';
+import {Transition} from "@headlessui/react";
 
 const members: { name: string }[] = [
     {name: "eva"},
@@ -9,11 +10,14 @@ const members: { name: string }[] = [
     {name: "kkong chi"},
     {name: "kkong chi"}
 ]
-const Members = () => {
-    return (
-        <div className={`grid grid-rows-6 bg-white rounded-lg shadow-md shadow-gray-200`}>
 
-            <div className={`px-6 py-5 border-b border-gray-100 sm:flex sm:items-center sm:justify-between row-span-1`}>
+const Members = () => {
+    const [isOpen, setIsOpen] = useState(true)
+
+    return (
+        <div className={`bg-white rounded-lg shadow-md shadow-gray-200 flex md:h-full md:flex-col flex-row`}>
+            <div
+                className={`px-6 py-5 border-b border-gray-100 sm:flex sm:items-center sm:justify-between col-span-1 row-span-1`}>
                 <h2 className={`font-medium text-gray-700`}> member </h2>
 
                 <button type="button"
@@ -29,19 +33,22 @@ const Members = () => {
                 </button>
             </div>
 
-            <div className={`p-6 space-y-6 row-span-6`}>
+            <div
+                className={`p-4 overflow-hidden flex md:h-full flex-row md:flex-col`}>
                 {members.map((value, index) => (
-                    <div className={`flex items-center justify-between`} key={index}>
-                        <div className={`flex items-center`}>
-                            <img className={`w-10 h-10 overflow-hidden bg-gray-100 rounded-full object-cover`}/>
-                            <span className={`mx-3 text-gray-600`}>{value.name}</span>
+                        <div className={`flex items-center bg-gray-100 overflow-hidden h-14 mb-2 rounded-lg`} key={index}>
+                            <div className={`flex items-center`}>
+                                <img className={`w-10 h-10 bg-gray-100 rounded-full object-cover hidden md:flex`}
+                                     src={'https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200'}/>
+                                <span
+                                    className={`mx-3 text-gray-600 whitespace-nowrap`}>{value.name}</span>
+                            </div>
                         </div>
-                    </div>
                 ))}
             </div>
-
         </div>
     );
+
 };
 
 export default Members;
