@@ -2,7 +2,7 @@
 import React from 'react';
 import {Disclosure} from "@headlessui/react";
 import {Bars3Icon, BellIcon, XMarkIcon} from "@heroicons/react/20/solid";
-import MyMenu from "@/app/component/my-menu";
+import MyMenu from "@/app/component/nav-bar/dropdown/my-menu";
 
 const navigation = [
     { name: 'Dashboard', href: '#', current: true },
