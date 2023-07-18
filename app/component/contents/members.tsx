@@ -1,19 +1,10 @@
 import React, {Fragment, useState} from 'react';
 import {Transition} from "@headlessui/react";
 
-const members: { name: string }[] = [
-    {name: "eva"},
-    {name: "cham chi"},
-    {name: "kkong chi"},
-    {name: "kkong chi"},
-    {name: "kkong chi"},
-    {name: "kkong chi"},
-    {name: "kkong chi"}
-]
 
-const Members = () => {
+const Members = ({members}:{members:any[]}) => {
     const [isOpen, setIsOpen] = useState(true)
-
+    console.error(members)
     return (
         <div className={`bg-white rounded-lg shadow-md shadow-gray-200 flex md:h-full md:flex-col flex-row`}>
             <div

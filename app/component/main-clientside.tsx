@@ -8,11 +8,11 @@ import Members from "@/app/component/contents/members";
 import {ArrowPagination} from "@/component/button/pagination-components";
 import {PaginationBtn} from "@/component/button/button-components";
 import RowNotice from "@/app/component/contents/row-notice";
-import ServerChat from "@/app/component/server-chat/server-chat";
+import ServerChat from "@/app/component/contents/server-chat";
 
 
 
-const MainClientside = ({curRooms}: { curRooms: string[] }) => {
+const MainClientside = ({curRooms, members}: { curRooms: string[]; members:any[]}) => {
 
     return (
         <div className={`p-2`}>
@@ -26,7 +26,7 @@ const MainClientside = ({curRooms}: { curRooms: string[] }) => {
                         <ChatRooms data={curRooms}/>
                     </div>
                     <div className={`border-2 row-span-1 col-span-5 md:col-span-1 md:row-span-7`}>
-                        <Members />
+                        <Members members={members}/>
                     </div>
                     <div className={`col-span-5 row-span-3 border-2`}>
                         <ServerChat />
