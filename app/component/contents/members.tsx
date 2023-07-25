@@ -4,7 +4,6 @@ import {Transition} from "@headlessui/react";
 
 const Members = ({members}:{members:any[]}) => {
     const [isOpen, setIsOpen] = useState(true)
-    console.error(members)
     return (
         <div className={`bg-white rounded-lg shadow-md shadow-gray-200 flex md:h-full md:flex-col flex-row`}>
             <div

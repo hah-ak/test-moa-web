@@ -9,11 +9,11 @@ import {ArrowPagination} from "@/component/button/pagination-components";
 import {PaginationBtn} from "@/component/button/button-components";
 import RowNotice from "@/app/component/contents/row-notice";
 import ServerChat from "@/app/component/contents/server-chat";
+import {useAppDisPatch} from "@/app/globalRedux/hooks";
 
 
 
 const MainClientside = ({curRooms, members}: { curRooms: string[]; members:any[]}) => {
-
     return (
         <div className={`p-2`}>
             <div className={`h-5 m-1`}></div>
