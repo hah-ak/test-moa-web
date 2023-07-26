@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Page = () => {
-    return null;
+    return (
+        <></>
+    );
 };
 
 export default Page;

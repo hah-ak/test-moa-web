@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomUlClientside from "@/app/@myRooms/component/room-ul-clientside";
+import RoomUlClientside from "@/app/@myRooms/_component/room-ul-clientside";
 
 const Default = () => {
     return (
