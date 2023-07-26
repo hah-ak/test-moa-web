@@ -1,6 +1,6 @@
 import {Inter} from 'next/font/google'
 import './global.css'
-import {Providers} from "@/app/globalRedux/Provider";
+import {Providers} from "@/app/_globalRedux/Provider";
 import React from "react";
 
 const inter = Inter({subsets: ['latin']})

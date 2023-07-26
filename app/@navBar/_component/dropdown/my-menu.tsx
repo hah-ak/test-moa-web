@@ -1,18 +1,22 @@
+'use client'
 import React, {Fragment} from 'react';
 import {Menu, Transition} from "@headlessui/react";
-import {useAppDisPatch, useAppSelector} from "@/app/globalRedux/hooks";
+import {useAppDisPatch, useAppSelector} from "@/app/_globalRedux/hooks";
 import {Avatar} from "flowbite-react";
+import usePortal from "@/app/_globalHook/client/usePortal";
+import SignInComponent from "@/component/sign/in/sign-in-component";
 
 
 const memberImage = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
 const MyMenu = () => {
     const dispatch = useAppDisPatch();
     const session = useAppSelector(state => state.session);
-    // const {Portal} = usePortal({children: <SignInComponent/>, key: "signIn"});
+    const {Portal} = usePortal({children: <SignInComponent/>, key: "signIn"});
     return (
         <Menu as="div" className="relative ml-3">
             <div>
                 <Menu.Button
+                    id={"profile"}
                     className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span className="sr-only">Open user menu</span>
                     {
@@ -170,7 +174,7 @@ const MyMenu = () => {
                         </Menu.Item>
                     </Menu.Items>
                 </Transition>
-
+                <Portal/>
         </Menu>
     );
 };

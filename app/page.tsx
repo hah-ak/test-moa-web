@@ -1,4 +1,4 @@
-import MainClientside from "@/app/component/main-clientside";
+import MainClientside from "@/app/_component/main-clientside";
 
 export default async function Home() {
     const getData = async ():Promise<{curRooms:string[];members:any[]}> => {
