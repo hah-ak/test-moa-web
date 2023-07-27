@@ -1,5 +1,4 @@
-import React, {Fragment, useState} from 'react';
-import {Transition} from "@headlessui/react";
+import React, {useState} from 'react';
 
 
 const Members = ({members}:{members:any[]}) => {

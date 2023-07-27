@@ -8,7 +8,7 @@ import SignInComponent from "@/component/sign/in/sign-in-component";
 
 
 const memberImage = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-const MyMenu = () => {
+const MyMenu = ({isLogin}:{isLogin:boolean}) => {
     const dispatch = useAppDisPatch();
     const session = useAppSelector(state => state.session);
     const {Portal} = usePortal({children: <SignInComponent/>, key: "signIn"});
@@ -20,9 +20,9 @@ const MyMenu = () => {
                     className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span className="sr-only">Open user menu</span>
                     {
-                        session.id == null
-                            ? <Avatar rounded={true}/>
-                            : <img className="h-8 w-8 rounded-full" src={memberImage} alt=""/>
+                        isLogin
+                            ? <img className="h-8 w-8 rounded-full" src={memberImage} alt=""/>
+                            : <Avatar rounded={true} />
                     }
 
                 </Menu.Button>

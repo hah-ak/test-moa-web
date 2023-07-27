@@ -1,10 +1,12 @@
 import React from 'react';
-import {Navigations} from "@/app/@navBar/page";
-import MyMenu from "@/app/@navBar/_component/dropdown/my-menu";
+import {Navigations} from "@/app/@navBar/[[...common]]/page";
+import MyMenu from "@/app/_component/navbar/dropdown/my-menu";
 import Link from "next/link";
+import {isLogin} from "@/lib/server-data";
 
 
-const Navbar = ({navigation,children}:{navigation:Navigations;children?:React.ReactNode}) => {
+const Navbar = async ({navigation,children}:{navigation:Navigations;children?:React.ReactNode}) => {
+    const b = isLogin();
     return (
         <nav className="border-gray-200 bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -14,7 +16,7 @@ const Navbar = ({navigation,children}:{navigation:Navigations;children?:React.Re
                         className="self-center text-2xl font-semibold whitespace-nowrap text-white">Flowbite</span>
                 </a>
                 <div className="flex items-center md:order-2">
-                    <MyMenu/>
+                    <MyMenu isLogin={b}/>
                 </div>
                 <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                      id="navbar-user">

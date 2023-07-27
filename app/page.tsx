@@ -1,4 +1,5 @@
 import MainClientside from "@/app/_component/main-clientside";
+import {getUserInfo, isLogin} from "@/lib/server-data";
 
 export default async function Home() {
     const getData = async ():Promise<{curRooms:string[];members:any[]}> => {
@@ -8,6 +9,7 @@ export default async function Home() {
         const curRooms:string[] = await new Promise<string[]>((resolve, reject) => setTimeout(()=>resolve(['a','b','c']),1000))
         return {members,curRooms}
     }
+
     const {curRooms,members} = await getData()
 
     return (

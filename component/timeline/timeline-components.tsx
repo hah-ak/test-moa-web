@@ -93,7 +93,7 @@ export const ChatTimelineComponent = ({imageUrl, name, content, date}:ChatTimeli
     return (
         <div className={"items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700 relative"}>
             <div className={"text-gray-600 dark:text-gray-400"}>
-                <img className={"w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0"} src="/docs/images/people/profile-picture-1.jpg" alt="Jese Leos image"/>
+                {/*<img className={"w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0"} src={""} alt="Jese Leos image"/>*/}
                 <div className="text-base font-normal">
                     <span className="font-medium text-gray-900 dark:text-white">{name}</span>
                 </div>

@@ -1,10 +1,13 @@
 import React from 'react';
+import RoomUlClientside from "@/app/@myRooms/_component/room-ul-clientside";
 
 const Page = () => {
     return (
         <div>
-            not Chat
+            default
+            {/*<RoomUlClientside initOpenState={false}/>*/}
         </div>
+
     );
 };
 

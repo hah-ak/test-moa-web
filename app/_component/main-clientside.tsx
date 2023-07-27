@@ -1,16 +1,9 @@
 "use client";
 import React from 'react';
-import {CheckIcon} from "@heroicons/react/20/solid";
-import Buttons from "@/app/_component/buttons";
-import Link from "next/link";
 import ChatRooms from "@/app/_component/contents/chat-rooms";
 import Members from "@/app/_component/contents/members";
-import {ArrowPagination} from "@/component/button/pagination-components";
-import {PaginationBtn} from "@/component/button/button-components";
 import RowNotice from "@/app/_component/contents/row-notice";
 import ServerChat from "@/app/_component/contents/server-chat";
-import {useAppDisPatch} from "@/app/_globalRedux/hooks";
-
 
 
 const MainClientside = ({curRooms, members}: { curRooms: string[]; members:any[]}) => {
