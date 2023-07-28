@@ -3,7 +3,6 @@ import './global.css'
 import {Providers} from "@/app/_globalRedux/Provider";
 import React from "react";
 import Navbar from "@/app/_component/navbar/navbar";
-import {Navigations} from "@/app/@navBar/page";
 
 export type Navigations = {name:string,href:string}[]
 const inter = Inter({subsets: ['latin']})
@@ -25,16 +24,14 @@ export default function RootLayout({children, myRooms}: {
 
     return (
         <html lang="en">
-        <body className={`${inter.className} lg:max-w-screen-lg md:max-w-screen-md w-full m-auto relative`}>
+        <body className={`${inter.className}`}>
         <Providers>
-            <div className={`bg-gray-200`}>
+            <div className={`bg-gray-200  lg:max-w-screen-lg md:max-w-screen-md w-full m-auto relative`}>
                 <Navbar navigation={navigation}></Navbar>
                 {children}
                 {myRooms}
             </div>
-            <div id={"modal"} className={"fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"}>
-                <div className={"bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40"}></div>
-            </div>
+            <div id={"modal-root"}></div>
         </Providers>
         </body>
         </html>

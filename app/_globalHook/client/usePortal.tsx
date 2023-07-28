@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {createPortal} from "react-dom";
 import {randomUUID} from "crypto";
+import {Dialog, Transition} from "@headlessui/react";
 
 const usePortal = ({children, key}: { children: React.ReactNode; key?: string }) => {
     const [isMount, setIsMount] = useState(false)
@@ -13,11 +14,28 @@ const usePortal = ({children, key}: { children: React.ReactNode; key?: string })
         setIsMount(true)
     }, [])
 
-    const Portal = () =>
-        isMount && isOpen && createPortal(children, document.querySelector("#modal"), key)
+    const Portal = () => isMount && isOpen && createPortal(
+            <Dialog as={"div"} className={"relative z-10"} open={isOpen} onClose={()=>setIsOpen(false)}>
+            {/*    <Transition.Child*/}
+            {/*        as={Fragment}*/}
+            {/*        enter="ease-out duration-300"*/}
+            {/*        enterFrom="opacity-0"*/}
+            {/*        enterTo="opacity-100"*/}
+            {/*        leave="ease-in duration-200"*/}
+            {/*        leaveFrom="opacity-100"*/}
+            {/*        leaveTo="opacity-0"*/}
+            {/*    >*/}
+            {/*        <div className="fixed inset-0 bg-black bg-opacity-25" />*/}
+            {/*    </Transition.Child>*/}
 
+                {children}
+            </Dialog>
+        ,
+        document.getElementById("modal-root") as Element,
+        key)
 
     return {
+        setIsOpen,
         Portal
     }
 };

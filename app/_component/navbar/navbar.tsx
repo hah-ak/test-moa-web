@@ -1,8 +1,8 @@
 import React from 'react';
-import {Navigations} from "@/app/@navBar/[[...common]]/page";
 import MyMenu from "@/app/_component/navbar/dropdown/my-menu";
 import Link from "next/link";
 import {isLogin} from "@/lib/server-data";
+import {Navigations} from "@/app/layout";
 
 
 const Navbar = async ({navigation,children}:{navigation:Navigations;children?:React.ReactNode}) => {
