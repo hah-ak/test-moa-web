@@ -1,5 +1,5 @@
 import React from 'react';
-import {ChatTimelineComponent, ChatTimelineLayout} from "@/component/timeline/timeline-components";
+import {ChatTimelineComponent, ChatTimelineLayout} from "@/components/timeline/timeline-components";
 
 const ServerChat = () => {
     const chatList = [

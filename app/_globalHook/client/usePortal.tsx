@@ -15,7 +15,8 @@ const usePortal = ({children, key}: { children: React.ReactNode; key?: string })
     }, [])
 
     const Portal = () => isMount && isOpen && createPortal(
-            <Dialog as={"div"} className={"relative z-10"} open={isOpen} onClose={()=>setIsOpen(false)}>
+            <Dialog as={"div"} className={"relative z-50"} open={isOpen} onClose={()=>setIsOpen(false)}>
+                <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
             {/*    <Transition.Child*/}
             {/*        as={Fragment}*/}
             {/*        enter="ease-out duration-300"*/}
@@ -27,8 +28,11 @@ const usePortal = ({children, key}: { children: React.ReactNode; key?: string })
             {/*    >*/}
             {/*        <div className="fixed inset-0 bg-black bg-opacity-25" />*/}
             {/*    </Transition.Child>*/}
-
-                {children}
+                <div className="fixed inset-0 flex items-center justify-center p-4">
+                    <Dialog.Panel>
+                        {children}
+                    </Dialog.Panel>
+                </div>
             </Dialog>
         ,
         document.getElementById("modal-root") as Element,

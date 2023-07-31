@@ -1,5 +1,5 @@
 import React, {AllHTMLAttributes, forwardRef, ReactNode} from "react";
-import {CustomProps} from "@/component/type";
+import {CustomProps} from "@/components/type";
 export const SuccessBtn = forwardRef<any, CustomProps>((props, ref) =>
     React.createElement(props.tag || "div",{...props,className:`btn3d btn-success ${props.classes || ''}`},props.children)
 )

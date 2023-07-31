@@ -1,5 +1,5 @@
 import {forwardRef} from "react";
-import {CustomProps} from "@/component/type";
+import {CustomProps} from "@/components/type";
 
 export const ArrowPagination = forwardRef<any,CustomProps>((props, ref) => (
     <div className={`flex ${props.classes}`}>

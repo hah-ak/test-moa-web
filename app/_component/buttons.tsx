@@ -1,6 +1,6 @@
 import React from 'react';
 import {CheckIcon} from "@heroicons/react/20/solid";
-import {SuccessBtn} from "@/component/button/button-components";
+import {SuccessBtn} from "@/components/button/button-components";
 
 const Buttons = () => {
     return (

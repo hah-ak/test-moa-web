@@ -26,7 +26,7 @@ export default function RootLayout({children, myRooms}: {
         <html lang="en">
         <body className={`${inter.className}`}>
         <Providers>
-            <div className={`bg-gray-200  lg:max-w-screen-lg md:max-w-screen-md w-full m-auto relative`}>
+            <div className={`bg-gray-200 lg:max-w-screen-lg md:max-w-screen-md w-full m-auto relative`}>
                 <Navbar navigation={navigation}></Navbar>
                 {children}
                 {myRooms}

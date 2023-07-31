@@ -1,5 +1,5 @@
 import {forwardRef} from "react";
-import {CustomProps} from "@/component/type";
+import {CustomProps} from "@/components/type";
 import {isEmpty} from "lodash";
 
 export const AvatarDefault = forwardRef<any, CustomProps & {src:string, rounded:boolean}>((props, ref) => {

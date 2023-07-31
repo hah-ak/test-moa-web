@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from "next/link";
-import {PaginationBtn} from "@/component/button/button-components";
-import {ArrowPagination} from "@/component/button/pagination-components";
+import {PaginationBtn} from "@/components/button/button-components";
+import {ArrowPagination} from "@/components/button/pagination-components";
 
 const ChatRooms = ({data}: { data: any[] }) => {
     return (
