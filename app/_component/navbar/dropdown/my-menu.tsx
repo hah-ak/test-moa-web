@@ -1,11 +1,10 @@
 'use client'
-import React, {Dispatch, Fragment, useState} from 'react';
-import {Dialog, Menu, Transition} from "@headlessui/react";
+import React, {useState} from 'react';
+import {Menu} from "@headlessui/react";
 import {useAppDisPatch, useAppSelector} from "@/app/_globalRedux/hooks";
-import usePortal from "@/app/_globalHook/client/usePortal";
 import {AvatarDefault} from "@/components/avatar/avatarComponents";
 import MenuItems from "@/app/_component/navbar/dropdown/menu-items";
-import SignInDialogComponent from "@/components/sign/in/sign-in-component";
+import SignInUpModalComponent from "@/components/sign/sign-in-up-modal-component";
 
 
 const memberImage = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -23,6 +22,7 @@ const MyMenu = ({isLogin}: { isLogin: boolean }) => {
     const dispatch = useAppDisPatch();
     const session = useAppSelector(state => state.session);
     const [open, setOpen] = useState(false)
+
     if (isLogin) {
         return (
             <Menu as="div" className="relative ml-3">
@@ -35,9 +35,9 @@ const MyMenu = ({isLogin}: { isLogin: boolean }) => {
     }
 
     return (
-        <div className={'relative ml-3'} onClick={()=>setOpen(!open)}>
+        <div className={'relative ml-3'} onClick={()=>setOpen(true)}>
             <MenuBtn isLogin={isLogin}/>
-            <SignInDialogComponent open={open} onClose={()=>setOpen(false)}/>
+            <SignInUpModalComponent open={open} setOpen={setOpen}/>
         </div>
     );
 };
