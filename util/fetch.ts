@@ -1,2 +1,33 @@
 // 추후 .env로 분리
-export const serverApi = async (url:URL|RequestInfo,options?:RequestInit):Promise<Response> => await fetch(`http://localhost:8083${url}`,options)
+const isJson = (sendData:any) => {
+    try {
+        const json = JSON.parse(sendData)
+        return typeof json === 'object'
+    } catch (e) {
+        return false
+    }
+}
+const createServerFetch = (sendData:any, requestInit:Omit<RequestInit, 'body'>={}):RequestInit => {
+    let type = ""
+    if (sendData instanceof FormData) {
+        type = "multipart/form-data"
+    } else if (typeof sendData === 'string'){
+        type = 'text/plain'
+    } else if (isJson(sendData)){
+        type = 'application/json'
+    } else {
+        type = 'application/octet-stream'
+    }
+
+    return {
+        body:sendData,
+        mode:'cors',
+        credentials:'include',
+        headers:{
+            'Content-Type':type
+        },
+        ...requestInit,
+    }
+}
+export const serverApi = async (url:URL|RequestInfo,sendData:any,options?:Omit<RequestInit, 'body'>):Promise<Response> => await fetch(`http://localhost:8083${url}`,createServerFetch(sendData, options))
+export const securityApi = async (url:URL|RequestInfo,sendData:any,options?:Omit<RequestInit, 'body'>):Promise<Response> => await fetch(`http://localhost:8093${url}`,createServerFetch(sendData, options))

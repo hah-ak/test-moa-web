@@ -3,7 +3,7 @@ import SignInComponent from "@/components/sign/in/sign-in-component";
 import SignUpFormComponent from "@/components/sign/up/sign-up-form-component";
 import DefaultModal from "@/components/modal/default-modal";
 
-const SignInUpModalComponent = ({open,setOpen}:{open:boolean;setOpen:()=>void}) => {
+const SignInUpModalComponent = ({open,setOpen}:{open:boolean;setOpen:(open:boolean)=>void}) => {
     const [tab, setTab] = useState<"signIn"|"singUp">("signIn")
     const onClose = () => {
         setOpen(false)

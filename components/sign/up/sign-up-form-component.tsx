@@ -1,23 +1,18 @@
 import React from 'react';
 import {signUp} from "@/lib/member/member-queries";
 import {SignUp} from "@/lib/member/sing-up";
+import {mapping} from "@/util/mappingUtil";
+
 
 const SignUpFormComponent = ({onClose}: { onClose: () => void }) => {
-    const isString = (obj:any): obj is string | object => typeof obj === 'string' || typeof obj === 'object'
     const fetchData = async (data:FormData) => {
-        const name = data.get('name')
-        const password = data.get('password')
-        const id = data.get('id')
-        if (isString(name) && isString(password) && isString(id)) {
-            const sendData:SignUp = {
-                name : name,
-                id : id,
-                password : password
-            }
-            const result = await signUp(sendData).then(value => value.json())
+        try {
+            const sendData = mapping<SignUp>(data)
+            const result = await signUp(data).then(value => value.json())
             console.log(result)
+        } catch (e) {
+            console.log(e)
         }
-        console.log(typeof id, typeof name)
     }
     return (
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -39,7 +34,7 @@ const SignUpFormComponent = ({onClose}: { onClose: () => void }) => {
                     <label className="block mt-3" htmlFor="email">
                         email
                     </label>
-                    <input type="email" name="email" id="email" placeholder="user@email.xyz" defaultValue="devdhaif@gmail.com"
+                    <input type="email" name="id" id="email" placeholder="user@email.xyz" defaultValue="devdhaif@gmail.com"
                            className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"/>
 
                     <label className="block mt-3" htmlFor="password">

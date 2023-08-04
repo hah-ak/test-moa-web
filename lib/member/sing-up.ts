@@ -1,6 +1,6 @@
 export type SignUp = {
-    id: object | string
-    name: object | string
-    password: object | string
-    imageName:string
+    id: string
+    name: string
+    password: string
+    imageName: string
 }
