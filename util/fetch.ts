@@ -10,7 +10,7 @@ const isJson = (sendData:any) => {
 const createServerFetch = (sendData:any, requestInit:Omit<RequestInit, 'body'>={}):RequestInit => {
     let type = ""
     if (sendData instanceof FormData) {
-        type = "multipart/form-data"
+        type = ""
     } else if (typeof sendData === 'string'){
         type = 'text/plain'
     } else if (isJson(sendData)){
@@ -30,4 +30,3 @@ const createServerFetch = (sendData:any, requestInit:Omit<RequestInit, 'body'>={
     }
 }
 export const serverApi = async (url:URL|RequestInfo,sendData:any,options?:Omit<RequestInit, 'body'>):Promise<Response> => await fetch(`http://localhost:8083${url}`,createServerFetch(sendData, options))
-export const securityApi = async (url:URL|RequestInfo,sendData:any,options?:Omit<RequestInit, 'body'>):Promise<Response> => await fetch(`http://localhost:8093${url}`,createServerFetch(sendData, options))
