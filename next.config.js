@@ -28,8 +28,16 @@ const nextConfig = {
     },
     experimental : {
         serverActions : true
+    },
+    // 개발서버 프록시 설정
+    async rewrites(){
+        return [
+            {
+                source: '/:path*',
+                destination: 'http://localhost:8083/:path*',
+            }
+        ]
     }
-
 }
 
 module.exports = nextConfig

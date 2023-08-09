@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {FormEvent, useEffect} from 'react';
 import {signIn} from "@/lib/member/member-queries";
 
 const SignInComponent = ({onClickSignUp, onClose}: { onClickSignUp: () => void, onClose: () => void }) => {
-    const onClickSignIn = async (formData:FormData) => {
-        const entries = formData.entries()
-        await signIn(formData);
+    const onClickSignIn = async (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        await signIn(new FormData(e.currentTarget));
     }
+
     return (
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button type="button"
@@ -22,12 +23,12 @@ const SignInComponent = ({onClickSignUp, onClose}: { onClickSignUp: () => void, 
             </button>
             <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
-                <form className="space-y-6" action={onClickSignIn}>
+                <form className="space-y-6" onSubmit={(event)=>onClickSignIn(event)}>
                     <div>
                         <label htmlFor="email"
                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                             email</label>
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="id" id="email"
                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                placeholder="name@company.com"/>
                     </div>

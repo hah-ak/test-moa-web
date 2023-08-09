@@ -8,25 +8,24 @@ const isJson = (sendData:any) => {
     }
 }
 const createServerFetch = (sendData:any, requestInit:Omit<RequestInit, 'body'>={}):RequestInit => {
-    let type = ""
-    if (sendData instanceof FormData) {
-        type = ""
-    } else if (typeof sendData === 'string'){
-        type = 'text/plain'
-    } else if (isJson(sendData)){
-        type = 'application/json'
-    } else {
-        type = 'application/octet-stream'
-    }
-
-    return {
+    const options:RequestInit = {
         body:sendData,
         mode:'cors',
         credentials:'include',
-        headers:{
-            'Content-Type':type
-        },
         ...requestInit,
     }
+    if (requestInit.method=== "GET") {
+        options.body = null
+    }
+    if (sendData instanceof FormData) {
+        return options;
+    } else if (typeof sendData === 'string'){
+        return {...options, headers:{'Content-Type': 'text/plain'}}
+    } else if (isJson(sendData)){
+        return {...options, headers:{'Content-Type': 'application/json'}}
+    } else {
+        return {...options, headers:{'Content-Type': 'application/octet-stream'}}
+    }
 }
-export const serverApi = async (url:URL|RequestInfo,sendData:any,options?:Omit<RequestInit, 'body'>):Promise<Response> => await fetch(`http://localhost:8083${url}`,createServerFetch(sendData, options))
+export const api = async (url:URL|RequestInfo,sendData:any,options:Omit<RequestInit, 'body'>={method:"GET"}):Promise<Response> => await fetch(`${url}`,createServerFetch(sendData, options))
+export const serverApi = async (url:URL|RequestInfo,sendData?:any,options:Omit<RequestInit, 'body'>={method:"GET"}):Promise<Response> => await fetch(`http://localhost:8083${url}`,createServerFetch(sendData, options))
